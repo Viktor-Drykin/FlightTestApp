@@ -56,6 +56,7 @@
 		C0D4A3062A9238A20000DAD2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2BA2A9225D50000DAD2 /* NetworkError.swift */; };
 		C0D4A3072A923C790000DAD2 /* FlightsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2D92A9227E50000DAD2 /* FlightsMapper.swift */; };
 		C0D4A30A2A9242720000DAD2 /* Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A3092A9242720000DAD2 /* Builders.swift */; };
+		C0D4A30C2A9245560000DAD2 /* FlightsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A30B2A9245560000DAD2 /* FlightsMapperTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		C0D4A2FC2A922AB80000DAD2 /* PlacesServiceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlacesServiceInterface.swift; sourceTree = "<group>"; };
 		C0D4A3032A922BCB0000DAD2 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		C0D4A3092A9242720000DAD2 /* Builders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builders.swift; sourceTree = "<group>"; };
+		C0D4A30B2A9245560000DAD2 /* FlightsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsMapperTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,10 +188,10 @@
 		C0D4A29A2A9224FC0000DAD2 /* FindFlightAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				C0D4A30D2A9245640000DAD2 /* Helpers */,
 				C0D4A29B2A9224FC0000DAD2 /* FindFlightAppTests.swift */,
 				C0D4A2EF2A9229580000DAD2 /* FlightsPresenterTests.swift */,
-				C0D4A3032A922BCB0000DAD2 /* Mocks.swift */,
-				C0D4A3092A9242720000DAD2 /* Builders.swift */,
+				C0D4A30B2A9245560000DAD2 /* FlightsMapperTests.swift */,
 			);
 			path = FindFlightAppTests;
 			sourceTree = "<group>";
@@ -303,6 +305,15 @@
 				C0D4A2E72A9228150000DAD2 /* FlightsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		C0D4A30D2A9245640000DAD2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C0D4A3032A922BCB0000DAD2 /* Mocks.swift */,
+				C0D4A3092A9242720000DAD2 /* Builders.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +495,7 @@
 				C0D4A2FE2A922AB80000DAD2 /* PlacesServiceInterface.swift in Sources */,
 				C0D4A2F52A922A2F0000DAD2 /* FlightsPresenter.swift in Sources */,
 				C0D4A2F72A922A340000DAD2 /* FlightsPresenting.swift in Sources */,
+				C0D4A30C2A9245560000DAD2 /* FlightsMapperTests.swift in Sources */,
 				C0D4A29C2A9224FC0000DAD2 /* FindFlightAppTests.swift in Sources */,
 				C0D4A2FB2A922A980000DAD2 /* FlightsServiceInterface.swift in Sources */,
 				C0D4A3052A922BCB0000DAD2 /* Mocks.swift in Sources */,

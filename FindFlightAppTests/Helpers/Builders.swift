@@ -333,7 +333,7 @@ extension Price {
     public final class Builder {
 
         private var amount = ""
-        private var formattedValue = ""
+        private var formattedValue = "123 €"
 
         public init() {}
 
