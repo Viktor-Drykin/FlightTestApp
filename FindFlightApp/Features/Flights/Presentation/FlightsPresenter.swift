@@ -13,20 +13,23 @@ class FlightsPresenter {
     weak var scene: FlightsScene?
     unowned let placesService: PlacesServiceProtocol
     unowned let flightsService: FlightsServiceProtocol
+    unowned let flightsStorage: FlightResultsStorageProtocol
 
     init(
         placesService: PlacesServiceProtocol,
-        flightsService: FlightsServiceProtocol
+        flightsService: FlightsServiceProtocol,
+        flightsStorage: FlightResultsStorageProtocol
     ) {
         self.placesService = placesService
         self.flightsService = flightsService
+        self.flightsStorage = flightsStorage
         let sourceNames = placesService.originPlaces
             .map { $0.name }
             .joined(separator: ", ")
         viewModel = .init(originsPlaceTitles: sourceNames,
                           isSearching: false,
                           selectedDate: Date.now,
-                          flightsState: .empty)
+                          flightsState: .initial)
     }
 }
 
@@ -48,15 +51,14 @@ extension FlightsPresenter: FlightsPresenting {
                                                                   destinationIds: nodes.map { $0.id })
             switch flightsResult {
             case .success(let itineraries):
-                let flights = itineraries
-                    .map { itinerary in
-                        return FlightsMapper.map(itinerary: itinerary)
-                    }
+                let flights = filteredItineraryForDisplaying(itineraries: itineraries, date: date)
+                    .map { FlightsMapper.map(itinerary: $0) }
                     .compactMap { $0 }
+                let flightsState: Flights.ViewModel.FlightsState = flights.isEmpty ? .empty : .loaded(flights)
                 viewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles,
                                   isSearching: false,
                                   selectedDate: viewModel.selectedDate,
-                                  flightsState: .loaded(flights))
+                                  flightsState: flightsState)
             case .failure(let error):
                 viewModel = viewModel(with: error)
             }
@@ -85,5 +87,23 @@ extension FlightsPresenter: FlightsPresenting {
 
         return flightsViewModel
     }
-    
+
+    func filteredItineraryForDisplaying(itineraries: [Itinerary], date: Date) -> [Itinerary] {
+        var filteredItineraries = [Itinerary]()
+        for itinerary in itineraries {
+            let item = StoredFlightItem(with: itinerary)
+            if flightsStorage.canShow(flight: item, date: date) && filteredItineraries.count <= 5 {
+                filteredItineraries.append(itinerary)
+                flightsStorage.storeFlight(flight: item, date: date)
+            }
+        }
+        return filteredItineraries
+    }
+}
+
+extension StoredFlightItem {
+    init(with itinerary: Itinerary) {
+        self.destination = itinerary.sector.sectorSegments.last?.segment.destination.station.code ?? ""
+        self.source = (itinerary.sector.sectorSegments.first?.segment.source.station.code) ?? ""
+    }
 }

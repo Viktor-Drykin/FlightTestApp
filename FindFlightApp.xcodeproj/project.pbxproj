@@ -57,6 +57,7 @@
 		C0D4A3072A923C790000DAD2 /* FlightsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2D92A9227E50000DAD2 /* FlightsMapper.swift */; };
 		C0D4A30A2A9242720000DAD2 /* Builders.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A3092A9242720000DAD2 /* Builders.swift */; };
 		C0D4A30C2A9245560000DAD2 /* FlightsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A30B2A9245560000DAD2 /* FlightsMapperTests.swift */; };
+		C0D4A30F2A924A510000DAD2 /* FlightResultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A30E2A924A510000DAD2 /* FlightResultsStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		C0D4A3032A922BCB0000DAD2 /* Mocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		C0D4A3092A9242720000DAD2 /* Builders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builders.swift; sourceTree = "<group>"; };
 		C0D4A30B2A9245560000DAD2 /* FlightsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightsMapperTests.swift; sourceTree = "<group>"; };
+		C0D4A30E2A924A510000DAD2 /* FlightResultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlightResultsStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 				C0D4A2CC2A9227440000DAD2 /* FlightsQueryBody.swift */,
 				C0D4A2CD2A9227440000DAD2 /* FlightsService.swift */,
 				C0D4A2F92A922A980000DAD2 /* FlightsServiceInterface.swift */,
+				C0D4A30E2A924A510000DAD2 /* FlightResultsStorage.swift */,
 			);
 			path = FlightsService;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 				C0D4A2FA2A922A980000DAD2 /* FlightsServiceInterface.swift in Sources */,
 				C0D4A2E82A9228150000DAD2 /* FlightListView.swift in Sources */,
 				C0D4A2E42A92280F0000DAD2 /* FlightsObservable.swift in Sources */,
+				C0D4A30F2A924A510000DAD2 /* FlightResultsStorage.swift in Sources */,
 				C0D4A2FD2A922AB80000DAD2 /* PlacesServiceInterface.swift in Sources */,
 				C0D4A2C92A9226590000DAD2 /* PlacesQueryBody.swift in Sources */,
 				C0D4A28B2A9224FA0000DAD2 /* FindFlightAppApp.swift in Sources */,
