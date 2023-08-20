@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol FlightsServiceProtocol: AnyObject {
-    func fetchFlights(with date: Date, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error>
-}
-
 class FlightsService {
 
     let apiService: APIServicePerformable

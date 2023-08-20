@@ -9,19 +9,12 @@ import SwiftUI
 
 @main
 struct FindFlightAppApp: App {
+
+    let launcher = Launcher()
+
     var body: some Scene {
         WindowGroup {
-            t()
-            ContentView()
+            launcher.launchScreen
         }
     }
-}
-
-func t() -> some View {
-    let graphqlURL = URL(string: "https://api.skypicker.com/umbrella/v2/graphql")!
-
-    Task {
-        let flights = await FlightsService(apiService: APIService(), url: graphqlURL).fetchFlights(with: Date.now, sourceIds: ["City:brno_cz"], destinationIds: ["City:new-york-city_ny_us"])
-    }
-    return Text("234")
 }

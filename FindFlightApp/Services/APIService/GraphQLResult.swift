@@ -9,7 +9,7 @@ import Foundation
 
 struct GraphQLResult<T: Decodable>: Decodable {
     let object: T?
-    let errorMessages: [String]
+    let errors: [Error]?
 
     enum CodingKeys: String, CodingKey {
         case data
@@ -25,14 +25,6 @@ struct GraphQLResult<T: Decodable>: Decodable {
 
         let dataDict = try container.decodeIfPresent([String: T].self, forKey: .data)
         self.object = dataDict?.values.first
-
-        var errorMessages: [String] = []
-
-        let errors = try container.decodeIfPresent([Error].self, forKey: .errors)
-        if let errors = errors {
-            errorMessages.append(contentsOf: errors.map { $0.message })
-        }
-
-        self.errorMessages = errorMessages
+        self.errors = try container.decodeIfPresent([Error].self, forKey: .errors)
     }
 }

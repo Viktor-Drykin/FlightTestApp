@@ -7,10 +7,6 @@
 
 import Foundation
 
-protocol APIServicePerformable {
-    func perform<Input, Output>(_ operation: GraphQLOperation<Input, Output>) async throws -> Result<Output, Error>
-}
-
 class APIService: APIServicePerformable {
 
     func perform<Input, Output>(_ operation: GraphQLOperation<Input, Output>) async throws -> Result<Output, Error> {

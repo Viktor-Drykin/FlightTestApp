@@ -7,13 +7,6 @@
 
 import Foundation
 
-protocol PlacesServiceProtocol: AnyObject {
-
-    var originPlaces: [Node] { get }
-
-    func fetchPlaces(with text: String) async -> Result<[Node], Error>
-}
-
 class PlacesService {
 
     let apiService: APIServicePerformable
@@ -26,6 +19,14 @@ class PlacesService {
 }
 
 extension PlacesService: PlacesServiceProtocol {
+
+    var originPlaces: [Node] {
+        [
+            .init(id: "City:brno_cz", legacyID: "brno_cz", name: "Brno", gps: .init(lat: 49.19506, lng: 16.606837)),
+            .init(id: "City:prague_cz", legacyID: "prague_cz", name: "Prague", gps: .init(lat: 50.075538, lng: 14.4378)),
+            .init(id: "City:vienna_at", legacyID: "vienna_at", name: "Vienna", gps: .init(lat: 48.208174, lng: 16.373819))
+        ]
+    }
 
     func fetchPlaces(with text: String) async -> Result<[Node], Error> {
 
@@ -41,13 +42,5 @@ extension PlacesService: PlacesServiceProtocol {
         } catch {
             return .failure(error)
         }
-    }
-
-    var originPlaces: [Node] {
-        [
-            .init(id: "City:brno_cz", legacyID: "brno_cz", name: "Brno", gps: .init(lat: 49.19506, lng: 16.606837)),
-            .init(id: "City:prague_cz", legacyID: "prague_cz", name: "Prague", gps: .init(lat: 50.075538, lng: 14.4378)),
-            .init(id: "City:vienna_at", legacyID: "vienna_at", name: "Vienna", gps: .init(lat: 48.208174, lng: 16.373819))
-        ]
     }
 }
