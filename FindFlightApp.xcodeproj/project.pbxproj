@@ -14,6 +14,14 @@
 		C0D4A29C2A9224FC0000DAD2 /* FindFlightAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A29B2A9224FC0000DAD2 /* FindFlightAppTests.swift */; };
 		C0D4A2A62A9224FC0000DAD2 /* FindFlightAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2A52A9224FC0000DAD2 /* FindFlightAppUITests.swift */; };
 		C0D4A2A82A9224FC0000DAD2 /* FindFlightAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2A72A9224FC0000DAD2 /* FindFlightAppUITestsLaunchTests.swift */; };
+		C0D4A2BC2A9225D50000DAD2 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2B82A9225D50000DAD2 /* APIService.swift */; };
+		C0D4A2BD2A9225D50000DAD2 /* GraphQLOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2B92A9225D50000DAD2 /* GraphQLOperation.swift */; };
+		C0D4A2BE2A9225D50000DAD2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2BA2A9225D50000DAD2 /* NetworkError.swift */; };
+		C0D4A2BF2A9225D50000DAD2 /* GraphQLResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2BB2A9225D50000DAD2 /* GraphQLResult.swift */; };
+		C0D4A2C62A9226590000DAD2 /* PlacesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2C22A9226590000DAD2 /* PlacesService.swift */; };
+		C0D4A2C72A9226590000DAD2 /* PlacesOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2C32A9226590000DAD2 /* PlacesOutput.swift */; };
+		C0D4A2C82A9226590000DAD2 /* PlacesInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2C42A9226590000DAD2 /* PlacesInput.swift */; };
+		C0D4A2C92A9226590000DAD2 /* PlacesQueryBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D4A2C52A9226590000DAD2 /* PlacesQueryBody.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +52,14 @@
 		C0D4A2A12A9224FC0000DAD2 /* FindFlightAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindFlightAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D4A2A52A9224FC0000DAD2 /* FindFlightAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFlightAppUITests.swift; sourceTree = "<group>"; };
 		C0D4A2A72A9224FC0000DAD2 /* FindFlightAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindFlightAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C0D4A2B82A9225D50000DAD2 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		C0D4A2B92A9225D50000DAD2 /* GraphQLOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLOperation.swift; sourceTree = "<group>"; };
+		C0D4A2BA2A9225D50000DAD2 /* NetworkError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		C0D4A2BB2A9225D50000DAD2 /* GraphQLResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphQLResult.swift; sourceTree = "<group>"; };
+		C0D4A2C22A9226590000DAD2 /* PlacesService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesService.swift; sourceTree = "<group>"; };
+		C0D4A2C32A9226590000DAD2 /* PlacesOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesOutput.swift; sourceTree = "<group>"; };
+		C0D4A2C42A9226590000DAD2 /* PlacesInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesInput.swift; sourceTree = "<group>"; };
+		C0D4A2C52A9226590000DAD2 /* PlacesQueryBody.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlacesQueryBody.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +110,7 @@
 		C0D4A2892A9224FA0000DAD2 /* FindFlightApp */ = {
 			isa = PBXGroup;
 			children = (
+				C0D4A2B42A92258E0000DAD2 /* Services */,
 				C0D4A28A2A9224FA0000DAD2 /* FindFlightAppApp.swift */,
 				C0D4A28C2A9224FA0000DAD2 /* ContentView.swift */,
 				C0D4A28E2A9224FC0000DAD2 /* Assets.xcassets */,
@@ -125,6 +142,37 @@
 				C0D4A2A72A9224FC0000DAD2 /* FindFlightAppUITestsLaunchTests.swift */,
 			);
 			path = FindFlightAppUITests;
+			sourceTree = "<group>";
+		};
+		C0D4A2B42A92258E0000DAD2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C0D4A2C12A9226440000DAD2 /* PlacesService */,
+				C0D4A2B72A9225AB0000DAD2 /* APIService */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C0D4A2B72A9225AB0000DAD2 /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				C0D4A2B82A9225D50000DAD2 /* APIService.swift */,
+				C0D4A2B92A9225D50000DAD2 /* GraphQLOperation.swift */,
+				C0D4A2BB2A9225D50000DAD2 /* GraphQLResult.swift */,
+				C0D4A2BA2A9225D50000DAD2 /* NetworkError.swift */,
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
+		C0D4A2C12A9226440000DAD2 /* PlacesService */ = {
+			isa = PBXGroup;
+			children = (
+				C0D4A2C42A9226590000DAD2 /* PlacesInput.swift */,
+				C0D4A2C32A9226590000DAD2 /* PlacesOutput.swift */,
+				C0D4A2C52A9226590000DAD2 /* PlacesQueryBody.swift */,
+				C0D4A2C22A9226590000DAD2 /* PlacesService.swift */,
+			);
+			path = PlacesService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +305,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0D4A2C62A9226590000DAD2 /* PlacesService.swift in Sources */,
 				C0D4A28D2A9224FA0000DAD2 /* ContentView.swift in Sources */,
+				C0D4A2BD2A9225D50000DAD2 /* GraphQLOperation.swift in Sources */,
+				C0D4A2BC2A9225D50000DAD2 /* APIService.swift in Sources */,
+				C0D4A2C92A9226590000DAD2 /* PlacesQueryBody.swift in Sources */,
 				C0D4A28B2A9224FA0000DAD2 /* FindFlightAppApp.swift in Sources */,
+				C0D4A2BF2A9225D50000DAD2 /* GraphQLResult.swift in Sources */,
+				C0D4A2C72A9226590000DAD2 /* PlacesOutput.swift in Sources */,
+				C0D4A2C82A9226590000DAD2 /* PlacesInput.swift in Sources */,
+				C0D4A2BE2A9225D50000DAD2 /* NetworkError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

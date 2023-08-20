@@ -11,7 +11,17 @@ import SwiftUI
 struct FindFlightAppApp: App {
     var body: some Scene {
         WindowGroup {
+            t()
             ContentView()
         }
     }
+}
+
+func t() -> some View {
+    let graphqlURL = URL(string: "https://api.skypicker.com/umbrella/v2/graphql")!
+
+    Task {
+        await PlacesService(apiService: APIService(), url: graphqlURL).fetchPlaces(with:"")
+    }
+    return Text("234")
 }
