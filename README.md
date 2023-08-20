@@ -10,7 +10,7 @@
 2. `PlacesService` is responsible for downloading destination places
 3. `FlightsService` is responsible for downloading flights
 4. `FlightResultsStorage` is created because of requirement **That is, if your sample app presents some selection of routes (f.e. PRG→JFK, ORY→SFO, ...) between destinations on Day 1, these exact routes won’t be offered again on a different day, and so on**
-   > #### $\textcolor{red}{\textsf{According to the current implementation based on this requirement after some time user will stop seeing any flights because API returns fixed flights based on source and destination ids.}}$
+> :warning:  According to the current implementation based on this requirement after some time user will stop seeing any flights because API returns fixed flights based on source and destination ids.
    So basically this storage:
    1. check whether flight was already shown for other date or not
    2. store the flight
