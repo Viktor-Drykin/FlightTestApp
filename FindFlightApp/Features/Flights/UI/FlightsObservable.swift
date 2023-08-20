@@ -25,10 +25,7 @@ extension FlightsObservable: FlightsScene {
     func perform(update: Flights.Update) {
         switch update {
         case .viewModel:
-            //TODO: remove this GCD workaround
-            DispatchQueue.main.async {
-                self.viewModel = self.presenter.viewModel
-            }
+            self.viewModel = self.presenter.viewModel
         }
     }
 
