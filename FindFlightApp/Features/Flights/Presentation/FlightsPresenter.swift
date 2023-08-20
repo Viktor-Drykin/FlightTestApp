@@ -12,17 +12,14 @@ class FlightsPresenter {
     var viewModel: Flights.ViewModel
     weak var scene: FlightsScene?
     unowned let placesService: PlacesServiceProtocol
-    unowned let flightsService: FlightsServiceProtocol
-    unowned let flightsStorage: FlightResultsStorageProtocol
+    unowned let flightsProvider: FlightsProviderProtocol
 
     init(
         placesService: PlacesServiceProtocol,
-        flightsService: FlightsServiceProtocol,
-        flightsStorage: FlightResultsStorageProtocol
+        flightsProvider: FlightsProviderProtocol
     ) {
         self.placesService = placesService
-        self.flightsService = flightsService
-        self.flightsStorage = flightsStorage
+        self.flightsProvider = flightsProvider
         let sourceNames = placesService.originPlaces
             .map { $0.name }
             .joined(separator: ", ")
@@ -46,15 +43,13 @@ extension FlightsPresenter: FlightsPresenting {
         let topPlacesResult = await placesService.fetchPlaces(with: "")
         switch topPlacesResult {
         case .success(let nodes):
-            let flightsResult = await flightsService.fetchFlights(with: date,
+            let flightsResult = await flightsProvider.fetchFlights(with: date,
                                                                   sourceIds: sourceIds,
                                                                   destinationIds: nodes.map { $0.id })
             switch flightsResult {
-            case .success(let itineraries):
-                let flights = filteredItineraryForDisplaying(itineraries: itineraries, date: date)
-                    .map { FlightsMapper.map(itinerary: $0) }
-                    .compactMap { $0 }
-                let flightsState: Flights.ViewModel.FlightsState = flights.isEmpty ? .empty : .loaded(flights)
+            case .success(let flightModels):
+                let flightsViewModels = flightModels.map { FlightsMapper.map(model: $0) }
+                let flightsState: Flights.ViewModel.FlightsState = flightsViewModels.isEmpty ? .empty : .loaded(flightsViewModels)
                 viewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles,
                                   isSearching: false,
                                   selectedDate: viewModel.selectedDate,
@@ -86,24 +81,5 @@ extension FlightsPresenter: FlightsPresenting {
         }
 
         return flightsViewModel
-    }
-
-    func filteredItineraryForDisplaying(itineraries: [Itinerary], date: Date) -> [Itinerary] {
-        var filteredItineraries = [Itinerary]()
-        for itinerary in itineraries {
-            let item = StoredFlightItem(with: itinerary)
-            if flightsStorage.canShow(flight: item, date: date) && filteredItineraries.count <= 5 {
-                filteredItineraries.append(itinerary)
-                flightsStorage.storeFlight(flight: item, date: date)
-            }
-        }
-        return filteredItineraries
-    }
-}
-
-extension StoredFlightItem {
-    init(with itinerary: Itinerary) {
-        self.destination = itinerary.sector.sectorSegments.last?.segment.destination.station.code ?? ""
-        self.source = (itinerary.sector.sectorSegments.first?.segment.source.station.code) ?? ""
     }
 }

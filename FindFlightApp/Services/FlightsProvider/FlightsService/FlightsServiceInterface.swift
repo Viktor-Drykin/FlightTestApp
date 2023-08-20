@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FlightsServiceProtocol: AnyObject {
-    func fetchFlights(with date: Date, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error>
+    func fetchFlights(startDate: String, endDate: String, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error>
 }

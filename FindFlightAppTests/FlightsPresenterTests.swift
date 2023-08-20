@@ -12,12 +12,12 @@ class FlightsPresenterTests: XCTestCase {
 
     private var sut: FlightsPresenter!
     private var placesService: PlacesServiceMock!
-    private var flightsService: FlightsServiceMock!
+    private var flightsProvider: FlightsProviderMock!
 
     override func setUp() {
         placesService = PlacesServiceMock()
-        flightsService = FlightsServiceMock()
-        sut = FlightsPresenter(placesService: placesService, flightsService: flightsService)
+        flightsProvider = FlightsProviderMock()
+        sut = FlightsPresenter(placesService: placesService, flightsProvider: flightsProvider)
     }
 
     func test_viewModelWithError_whenUndefinedError_setUnknownErrorViewModel() {
@@ -83,7 +83,7 @@ class FlightsPresenterTests: XCTestCase {
     func test_searchFlights_whenFetchFlightsFails_ErrorForViewModel() async {
         // Given
         placesService.result = .success([])
-        flightsService.result = .failure(NetworkError.failedToDecode)
+        flightsProvider.result = .failure(NetworkError.failedToDecode)
 
         // When
         await sut.searchFlights(for: Date.now)
@@ -99,7 +99,7 @@ class FlightsPresenterTests: XCTestCase {
     func test_searchFlights_whenRequestsSuccessful_setViewModelWithFlights() async {
         // Given
         placesService.result = .success([])
-        flightsService.result = .success([Itinerary.Builder().build()])
+        flightsProvider.result = .success([.init(source: .init(code: "", name: "", legacyId: "", id: ""), destination: .init(code: "", name: "", legacyId: "", id: ""), date: Date.now, price: "")])
 
         // When
         await sut.searchFlights(for: Date.now)

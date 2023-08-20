@@ -26,18 +26,12 @@ class FlightsService {
 
 extension FlightsService: FlightsServiceProtocol {
 
-    func fetchFlights(with date: Date, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error> {
-
-        let startDate = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
-        let endDate = Calendar.current.date(bySettingHour: 23, minute: 59, second: 0, of: date)!
-
-        let startString = dateFormatter.string(from: startDate)
-        let endString = dateFormatter.string(from: endDate)
+    func fetchFlights(startDate: String, endDate: String, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error> {
         
         let operation = GraphQLOperation<FlightsInput, OnewayItineraries>(
             url: url,
-            input: .init(startDate: startString,
-                         endDate: endString,
+            input: .init(startDate: startDate,
+                         endDate: endDate,
                          sourceIds: sourceIds,
                          destinationIds: destinationIds),
             operationString: flightsQueryBody

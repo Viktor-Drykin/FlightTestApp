@@ -7,38 +7,35 @@
 
 import Foundation
 
-struct StoredFlightItem: Hashable {
-    let source: String
-    let destination: String
-}
-
 protocol FlightResultsStorageProtocol: AnyObject {
-    func canShow(flight: StoredFlightItem, date: Date) -> Bool
-    func storeFlight(flight: StoredFlightItem, date: Date)
+    func canShow(flight: FlightsModel, date: Date) -> Bool
+    func storeFlight(flight: FlightsModel, date: Date)
 }
 
 class FlightResultsStorage {
 
-    var storedFlights: [Date: Set<StoredFlightItem>] = [:]
+    var storedFlights: [Date: Set<FlightStoredModel>] = [:]
 
-    init() { }
+    init() {}
 }
 
 extension FlightResultsStorage: FlightResultsStorageProtocol {
 
-    func canShow(flight: StoredFlightItem, date: Date) -> Bool {
+    func canShow(flight: FlightsModel, date: Date) -> Bool {
         let date = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
         let storedFlightsOnDate = storedFlights[date] ?? .init()
+        let storedModel: FlightStoredModel = .init(with: flight)
         return !storedFlights.values
-            .reduce(Set<StoredFlightItem>(), { $0.union($1) })
+            .reduce(Set<FlightStoredModel>(), { $0.union($1) })
             .subtracting(storedFlightsOnDate)
-            .contains(flight)
+            .contains(storedModel)
     }
 
-    func storeFlight(flight: StoredFlightItem, date: Date) {
+    func storeFlight(flight: FlightsModel, date: Date) {
         let date = Calendar.current.date(bySettingHour: 0, minute: 0, second: 0, of: date)!
         var storedFlightsOnDate = storedFlights[date] ?? .init()
-        storedFlightsOnDate.insert(flight)
+        let storedModel: FlightStoredModel = .init(with: flight)
+        storedFlightsOnDate.insert(storedModel)
         storedFlights[date] = storedFlightsOnDate
     }
 }

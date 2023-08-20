@@ -45,16 +45,12 @@ struct FlightItemView: View {
                     .fontWeight(.bold)
                 Text(Constant.toTitle + flight.destination)
                     .fontWeight(.bold)
-                if let price = flight.price {
-                    Text(price)
-                        .bold()
-                        .foregroundColor(.green)
-                }
-                if let date = flight.date {
-                    Text(Self.dateFormatter.string(from: date))
-                        .bold()
-                        .foregroundColor(.blue)
-                }
+                Text(flight.price)
+                    .bold()
+                    .foregroundColor(.green)
+                Text(Self.dateFormatter.string(from: flight.date))
+                    .bold()
+                    .foregroundColor(.blue)
             }
             .padding(8)
         }

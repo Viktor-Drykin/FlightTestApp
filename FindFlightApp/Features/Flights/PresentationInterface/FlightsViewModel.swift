@@ -16,8 +16,8 @@ enum Flights {
             let imageURL: URL?
             let origin: String
             let destination: String
-            let date: Date?
-            let price: String?
+            let date: Date
+            let price: String
         }
 
         enum FlightsState: Hashable {

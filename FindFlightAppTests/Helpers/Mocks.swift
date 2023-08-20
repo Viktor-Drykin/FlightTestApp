@@ -26,7 +26,16 @@ class FlightsServiceMock: FlightsServiceProtocol {
 
     var result: Result<[Itinerary], Error> = .success([])
 
-    func fetchFlights(with date: Date, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error> {
+    func fetchFlights(startDate: String, endDate: String, sourceIds: [String], destinationIds: [String]) async -> Result<[Itinerary], Error> {
+        return result
+    }
+}
+
+class FlightsProviderMock: FlightsProviderProtocol {
+
+    var result: Result<[FlightsModel], Error> = .success([])
+
+    func fetchFlights(with date: Date, sourceIds: [String], destinationIds: [String]) async -> Result<[FlightsModel], Error> {
         return result
     }
 }

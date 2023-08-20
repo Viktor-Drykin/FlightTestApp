@@ -12,18 +12,21 @@ class Launcher {
 
     let apiService: APIServicePerformable
     let placesService: PlacesServiceProtocol
-    let flightsService: FlightsServiceProtocol
-    let flightsStorage: FlightResultsStorageProtocol
+    let flightsProviver: FlightsProviderProtocol
 
     init() {
         apiService = APIService()
         let graphqlURL = URL(string: "https://api.skypicker.com/umbrella/v2/graphql")!
         placesService = PlacesService(apiService: apiService, url: graphqlURL)
-        flightsService = FlightsService(apiService: apiService, url: graphqlURL)
-        flightsStorage = FlightResultsStorage()
+        let flightsService = FlightsService(apiService: apiService,
+                                            url: graphqlURL)
+        let flightsStorage = FlightResultsStorage()
+        flightsProviver = FlightsProvider(flightsService: flightsService,
+                                          flightsStorage: flightsStorage)
     }
 
     var launchScreen: some View {
-        FlightsScreenBuilder.makeFlightsView(placesService: placesService, flightsService: flightsService, flightsStorage: flightsStorage)
+        FlightsScreenBuilder.makeFlightsView(placesService: placesService,
+                                             flightsProvider: flightsProviver)
     }
 }

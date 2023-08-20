@@ -10,11 +10,9 @@ import SwiftUI
 enum FlightsScreenBuilder {
 
     static func makeFlightsView(placesService: PlacesServiceProtocol,
-                                flightsService: FlightsServiceProtocol,
-                                flightsStorage: FlightResultsStorageProtocol) -> some View {
+                                flightsProvider: FlightsProviderProtocol) -> some View {
         let flightsPresenter = FlightsPresenter(placesService: placesService,
-                                                flightsService: flightsService,
-                                                flightsStorage: flightsStorage)
+                                                flightsProvider: flightsProvider)
         let flightsObservable = FlightsObservable(flightsPresenter)
         flightsPresenter.scene = flightsObservable
         return FlightsView(observable: flightsObservable)
