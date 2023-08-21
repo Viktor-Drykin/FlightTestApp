@@ -23,7 +23,7 @@ enum Flights {
         enum FlightsState: Hashable {
 
             enum ErrorType: Hashable {
-                case uknown
+                case unknown
                 case server
                 case decoding
             }

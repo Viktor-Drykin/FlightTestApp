@@ -50,6 +50,7 @@ struct FlightsView: View {
             }
             DatePicker(Constant.selectedDateTitle,
                        selection: $selectedDate,
+                       in: Date()...,
                        displayedComponents: .date)
                 .datePickerStyle(.compact)
             Button {

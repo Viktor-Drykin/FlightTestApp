@@ -32,7 +32,7 @@ class FlightsPresenterTests: XCTestCase {
             XCTFail("Unexpected error state")
             return
         }
-        XCTAssertEqual(type, .uknown)
+        XCTAssertEqual(type, .unknown)
     }
 
     func test_viewModelWithError_whenFailedToDecodeError_setDecodingErrorViewModel() {
@@ -77,7 +77,7 @@ class FlightsPresenterTests: XCTestCase {
             XCTFail("Unexpected error state")
             return
         }
-        XCTAssertEqual(type, .uknown)
+        XCTAssertEqual(type, .unknown)
     }
 
     func test_searchFlights_whenFetchFlightsFails_ErrorForViewModel() async {

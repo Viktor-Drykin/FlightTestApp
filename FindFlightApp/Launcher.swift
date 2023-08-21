@@ -12,7 +12,7 @@ class Launcher {
 
     let apiService: APIServicePerformable
     let placesService: PlacesServiceProtocol
-    let flightsProviver: FlightsProviderProtocol
+    let flightsProvider: FlightsProviderProtocol
 
     init() {
         apiService = APIService()
@@ -21,12 +21,12 @@ class Launcher {
         let flightsService = FlightsService(apiService: apiService,
                                             url: graphqlURL)
         let flightsStorage = FlightResultsStorage()
-        flightsProviver = FlightsProvider(flightsService: flightsService,
+        flightsProvider = FlightsProvider(flightsService: flightsService,
                                           flightsStorage: flightsStorage)
     }
 
     var launchScreen: some View {
         FlightsScreenBuilder.makeFlightsView(placesService: placesService,
-                                             flightsProvider: flightsProviver)
+                                             flightsProvider: flightsProvider)
     }
 }

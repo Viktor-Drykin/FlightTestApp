@@ -21,7 +21,6 @@ class FlightsObservable: ObservableObject {
 
 extension FlightsObservable: FlightsScene {
 
-    @MainActor
     func perform(update: Flights.Update) {
         switch update {
         case .viewModel:

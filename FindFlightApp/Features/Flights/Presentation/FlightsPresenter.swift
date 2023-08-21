@@ -32,6 +32,7 @@ class FlightsPresenter {
 
 extension FlightsPresenter: FlightsPresenting {
 
+    @MainActor
     func searchFlights(for date: Date) async {
         let sourceIds = placesService.originPlaces
             .map { $0.id }
@@ -68,7 +69,7 @@ extension FlightsPresenter: FlightsPresenting {
         let flightsViewModel: Flights.ViewModel
 
         guard let error = error as? NetworkError else {
-            flightsViewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles, isSearching: false, selectedDate: viewModel.selectedDate, flightsState: .error(.uknown))
+            flightsViewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles, isSearching: false, selectedDate: viewModel.selectedDate, flightsState: .error(.unknown))
             return flightsViewModel
         }
         switch error {
@@ -77,7 +78,7 @@ extension FlightsPresenter: FlightsPresenting {
         case .invalidStatusCode:
             flightsViewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles, isSearching: false, selectedDate: viewModel.selectedDate, flightsState: .error(.server))
         case .unknown:
-            flightsViewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles, isSearching: false, selectedDate: viewModel.selectedDate, flightsState: .error(.uknown))
+            flightsViewModel = .init(originsPlaceTitles: viewModel.originsPlaceTitles, isSearching: false, selectedDate: viewModel.selectedDate, flightsState: .error(.unknown))
         }
 
         return flightsViewModel

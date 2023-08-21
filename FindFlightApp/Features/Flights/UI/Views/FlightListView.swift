@@ -35,8 +35,8 @@ struct FlightListView: View {
                 Text(Constant.decodingError)
             case .server:
                 Text(Constant.serverError)
-            case .uknown:
-                Text(Constant.uknownError)
+            case .unknown:
+                Text(Constant.unknownError)
             }
         }
     }
@@ -47,7 +47,7 @@ extension FlightListView {
         static let empty = "No results"
         static let decodingError = "Incorrect response from server"
         static let serverError = "Invalid status response"
-        static let uknownError = "Something went wrong"
+        static let unknownError = "Something went wrong"
     }
 }
 
